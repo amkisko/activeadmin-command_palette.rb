@@ -1,6 +1,6 @@
 # activeadmin-command_palette
 
-[![Gem Version](https://badge.fury.io/rb/activeadmin-command-palette.svg)](https://badge.fury.io/rb/activeadmin-command-palette) [![Test Status](https://github.com/amkisko/activeadmin-command_palette.rb/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/activeadmin-command_palette.rb/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/amkisko/activeadmin-command_palette.rb/graph/badge.svg)](https://app.codecov.io/github/amkisko/activeadmin-command_palette.rb)
+[![Gem Version](https://badge.fury.io/rb/activeadmin-command_palette.svg)](https://badge.fury.io/rb/activeadmin-command_palette) [![Test Status](https://github.com/amkisko/activeadmin-command_palette.rb/actions/workflows/test.yml/badge.svg)](https://github.com/amkisko/activeadmin-command_palette.rb/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/amkisko/activeadmin-command_palette.rb/graph/badge.svg)](https://app.codecov.io/github/amkisko/activeadmin-command_palette.rb)
 
 Cmd+K / Ctrl+K command palette for ActiveAdmin 4.
 
@@ -131,9 +131,9 @@ Numbered design documents for the public contract live in [`rfcs/`](rfcs/README.
 
 - [GitHub](https://github.com/amkisko/activeadmin-command_palette.rb)
 - [GitLab](https://gitlab.com/amkisko/activeadmin-command_palette.rb)
-- [RubyGems](https://rubygems.org/gems/activeadmin-command-palette)
-- [libraries.io](https://libraries.io/rubygems/activeadmin-command-palette)
-- [Deps.dev](https://deps.dev/rubygems/activeadmin-command-palette)
+- [RubyGems](https://rubygems.org/gems/activeadmin-command_palette)
+- [libraries.io](https://libraries.io/rubygems/activeadmin-command_palette)
+- [Deps.dev](https://deps.dev/rubygems/activeadmin-command_palette)
 - [SonarCloud](https://sonarcloud.io/project/overview?id=amkisko_activeadmin-command_palette.rb)
 - [Snyk](https://snyk.io/test/github/amkisko/activeadmin-command_palette.rb)
 - [Codecov](https://app.codecov.io/github/amkisko/activeadmin-command_palette.rb)

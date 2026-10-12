@@ -3,7 +3,7 @@
 require_relative "lib/activeadmin/command_palette/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "activeadmin-command-palette"
+  spec.name = "activeadmin-command_palette"
   spec.version = ActiveAdmin::CommandPalette::VERSION
   spec.authors = ["Andrei Makarov"]
   spec.email = ["contact@kiskolabs.com"]
@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
       LICENSE.md
       README.md
       SECURITY.md
-      activeadmin-command-palette.gemspec
+      activeadmin-command_palette.gemspec
     ].select { |path| File.file?(path) } +
       Dir["{app,config,lib,sig}/**/*"]
   end

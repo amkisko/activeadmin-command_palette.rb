@@ -4,6 +4,7 @@
 
 ## 0.1.6
 
+- Publish as `activeadmin-command_palette` so Bundler requires `activeadmin/command_palette` by default; yank mistaken `activeadmin-command-palette` 0.1.6.
 - Require ActiveAdmin 4.0.0.beta23 or newer.
 - Keep kind labels on result rows as plain text instead of filled chips inside the panel.
 - Send finder queries in CSRF-protected request bodies and combine multi-kind search into one bounded request.
