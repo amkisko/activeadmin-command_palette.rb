@@ -1,0 +1,5 @@
+module ActiveAdmin
+  module CommandPalette
+    VERSION: String
+  end
+end

@@ -1,0 +1,21 @@
+fi:
+  active_admin:
+    command_palette:
+      title: Komentovalikko
+      open: Avaa komentovalikko
+      open_short: Haku
+      query_label: Hae komentoja
+      placeholder: "Siirry…  > toiminnot  ? ohje"
+      footer: "↑↓ siirry  ↵ avaa  esc sulje"
+      empty: Ei osumia
+      loading: Haetaan…
+      error: Haku epäonnistui. Yritä uudelleen.
+      unauthorized: Istunto päättyi. Kirjaudu uudelleen jatkaaksesi hakua.
+      forbidden: Sinulla ei ole oikeutta hakea näitä tietueita.
+      required: pakollinen
+      optional: valinnainen
+      help:
+        go: "Siirry / Haku — kirjoita sivuille ja tietueisiin"
+        actions: "> Toiminnot — suorita rekisteröityjä komentoja"
+        resource: "> Näytä / Luo — hae tai avaa uusi; Muokkaa / Poista tietuesivulla"
+        modes: "? Ohje — näytä nämä tilavihjeet"

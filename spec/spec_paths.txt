@@ -1,0 +1,8 @@
+spec/lib/activeadmin/command_palette/catalog_spec.rb
+spec/lib/activeadmin/command_palette/compiler_spec.rb
+spec/lib/activeadmin/command_palette/configuration_spec.rb
+spec/lib/activeadmin/command_palette/finder_spec.rb
+spec/lib/activeadmin/command_palette/helper_spec.rb
+spec/requests/command_palette_options_spec.rb
+spec/usr/license_audit_spec.rb
+spec/views/active_admin/command_palette/palette_spec.rb

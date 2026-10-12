@@ -1,0 +1,45 @@
+<div
+  data-activeadmin-command-palette--command-palette-target="dialog"
+  class="hidden fixed inset-0 z-50 flex items-start justify-center pt-[12vh] px-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="<%= t("active_admin.command_palette.title") %>"
+  data-action="keydown->activeadmin-command-palette--command-palette#onDialogKeydown">
+  <div
+    class="absolute inset-0 bg-black/40"
+    data-action="click->activeadmin-command-palette--command-palette#close"
+    aria-hidden="true"></div>
+  <div
+    class="relative w-full max-w-xl rounded-lg border border-gray-200 bg-white shadow-2xl dark:border-gray-700 dark:bg-gray-900"
+    data-activeadmin-command-palette--command-palette-target="panel">
+    <div class="border-b border-gray-200 px-3 py-2 dark:border-gray-700">
+      <input
+        type="search"
+        autocomplete="off"
+        role="combobox"
+        aria-expanded="false"
+        aria-label="<%= t("active_admin.command_palette.query_label") %>"
+        aria-haspopup="listbox"
+        aria-controls="activeadmin-command-palette-list"
+        aria-autocomplete="list"
+        data-activeadmin-command-palette--command-palette-target="query"
+        data-action="input->activeadmin-command-palette--command-palette#onInput keydown->activeadmin-command-palette--command-palette#onKeydown"
+        placeholder="<%= t("active_admin.command_palette.placeholder") %>"
+        class="w-full border-0 bg-transparent text-base text-gray-950 dark:text-gray-100 focus:outline-none focus:ring-0" />
+    </div>
+    <ul
+      id="activeadmin-command-palette-list"
+      data-activeadmin-command-palette--command-palette-target="list"
+      class="max-h-80 overflow-auto py-1"
+      role="listbox"></ul>
+    <div
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-activeadmin-command-palette--command-palette-target="announcer"></div>
+    <div class="border-t border-gray-200 px-3 py-2 text-xs text-gray-500 dark:border-gray-700 dark:text-gray-400">
+      <%= t("active_admin.command_palette.footer") %>
+    </div>
+  </div>
+</div>

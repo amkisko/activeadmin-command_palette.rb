@@ -1,0 +1,21 @@
+en:
+  active_admin:
+    command_palette:
+      title: Command palette
+      open: Open command palette
+      open_short: Search
+      query_label: Search commands
+      placeholder: "Go to…  > actions  ? help"
+      footer: "↑↓ navigate  ↵ open  esc close"
+      empty: No matches
+      loading: Searching…
+      error: Search failed. Try again.
+      unauthorized: Session expired. Sign in again to keep searching.
+      forbidden: You do not have permission to search these records.
+      required: required
+      optional: optional
+      help:
+        go: "Go / Find — type to jump pages and records"
+        actions: "> Actions — run registered commands"
+        resource: "> View / Create — search or open new; Edit / Delete on a record page"
+        modes: "? Help — show these mode tips"
