@@ -2,9 +2,12 @@
 
 ## Unreleased
 
+- Document `ActiveAdmin::CommandPalette.tailwind_entry_path` in the install README.
+
 ## 0.1.7
 
 - Keep the highlighted list row visible when moving with Arrow Up or Arrow Down.
+- Ship `ActiveAdmin::CommandPalette.tailwind_entry_path` so hosts can concatenate palette shell utilities into the ActiveAdmin Tailwind build.
 
 ## 0.1.6
 

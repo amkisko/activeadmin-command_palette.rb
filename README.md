@@ -35,6 +35,16 @@ Register finders and actions in an initializer or with the resource DSL.
 
 Built-in UI locales: English (`en`), Finnish (`fi`), Swedish (`sv`).
 
+### Styles
+
+Concatenate the gem Tailwind entry into the CSS file your ActiveAdmin Tailwind build compiles:
+
+```ruby
+File.read(ActiveAdmin::CommandPalette.tailwind_entry_path)
+```
+
+That entry keeps palette shell utilities available in the admin stylesheet.
+
 ## Configuration
 
 Prefer resource-level registration in `ActiveAdmin.register`:
