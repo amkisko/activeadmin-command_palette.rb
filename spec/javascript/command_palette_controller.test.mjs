@@ -261,3 +261,73 @@ test("announces asynchronous search states", () => {
   assert.equal(announcer.textContent, "Search failed");
   assert.equal(query.attributes["aria-busy"], "false");
 });
+
+test("scrolls the highlighted option into view", () => {
+  const scrolled = [];
+  const list = {
+    children: [],
+    replaceChildren() {
+      this.children = [];
+    },
+    appendChild(node) {
+      this.children.push(node);
+    },
+    querySelector(selector) {
+      const match = selector.match(/^#(activeadmin-command-palette-option-\d+)$/);
+      if (!match) return null;
+      return this.children.find((child) => child.id === match[1]) || null;
+    },
+  };
+  globalThis.document = {
+    createElement() {
+      return {
+        attributes: {},
+        children: [],
+        className: "",
+        dataset: {},
+        id: "",
+        textContent: "",
+        append(...nodes) {
+          this.children.push(...nodes);
+        },
+        appendChild(node) {
+          this.children.push(node);
+        },
+        scrollIntoView(options) {
+          scrolled.push({ id: this.id, options });
+        },
+        setAttribute(name, value) {
+          this.attributes[name] = value;
+        },
+      };
+    },
+  };
+  const query = {
+    attributes: {},
+    removeAttribute(name) {
+      delete this.attributes[name];
+    },
+    setAttribute(name, value) {
+      this.attributes[name] = value;
+    },
+  };
+  const controller = buildController({
+    hasAnnouncerTarget: false,
+    hasListTarget: true,
+    listTarget: list,
+    queryTarget: query,
+    status: null,
+    visibleItems: [
+      { id: "a", kind: "navigate", label: "Alpha", url: "/a" },
+      { id: "b", kind: "navigate", label: "Beta", url: "/b" },
+    ],
+  });
+
+  controller.highlightedIndex = 1;
+  controller.render();
+
+  assert.equal(query.attributes["aria-activedescendant"], "activeadmin-command-palette-option-1");
+  assert.deepEqual(scrolled, [
+    { id: "activeadmin-command-palette-option-1", options: { block: "nearest" } },
+  ]);
+});

@@ -555,13 +555,18 @@ export default class extends Controller {
     }
 
     if (this.highlightedIndex >= 0 && this.visibleItems.length > 0) {
-      this.queryTarget.setAttribute(
-        "aria-activedescendant",
-        `activeadmin-command-palette-option-${this.highlightedIndex}`
-      );
+      const optionId = `activeadmin-command-palette-option-${this.highlightedIndex}`;
+      this.queryTarget.setAttribute("aria-activedescendant", optionId);
+      this.scrollHighlightedIntoView(optionId);
     } else {
       this.queryTarget.removeAttribute("aria-activedescendant");
     }
+  }
+
+  scrollHighlightedIntoView(optionId) {
+    if (!this.hasListTarget) return;
+    const option = this.listTarget.querySelector(`#${optionId}`);
+    option?.scrollIntoView({ block: "nearest" });
   }
 
   appendSectionHeader(kind) {

@@ -14,7 +14,7 @@ Gemspec and README floor raised from `4.0.0.beta13` to `4.0.0.beta23`. Kind badg
 
 ## Next
 
-Host Tailwind `@source` for this gem is not required as install guidance unless unique utilities prove missing in a real AA build. Prefer overlapping ActiveAdmin utilities or a gem-owned safelist file over a long host content recipe. Optional later: semantic class hooks without introducing nested card chrome.
+Done for styles: gem-owned Tailwind entry at `app/assets/stylesheets/activeadmin_command_palette.css`, exposed as `ActiveAdmin::CommandPalette.tailwind_entry_path`. See `docs/issues/20261012110500_tailwind-entry-and-highlight-scroll.md`. Optional later: semantic class hooks without introducing nested card chrome.
 
 ## Validation
 

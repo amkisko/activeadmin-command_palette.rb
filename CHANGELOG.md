@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.7
+
+- Keep the highlighted list row visible when moving with Arrow Up or Arrow Down.
+
 ## 0.1.6
 
 - Publish as `activeadmin-command_palette` so Bundler requires `activeadmin/command_palette` by default; yank mistaken `activeadmin-command-palette` 0.1.6.

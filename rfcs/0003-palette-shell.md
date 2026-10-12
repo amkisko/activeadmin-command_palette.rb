@@ -35,6 +35,11 @@ On the admin layout body, set the Stimulus controller `activeadmin-command-palet
 - Helper module `ActiveAdmin::CommandPalette::Helper` provides `command_palette_controller_name`, `command_palette_data_attributes`, `render_command_palette`, and related readers.
 - Importmap pin: `controllers/activeadmin_command_palette/command_palette_controller`.
 - Locales under `active_admin.command_palette.*` for empty, loading, error, unauthorized, and help rows. Built-in files: `en`, `fi`, `sv`.
+- Hosts concatenate `ActiveAdmin::CommandPalette.tailwind_entry_path` into the ActiveAdmin Tailwind CSS build so shell utilities are emitted. The entry is owned by the gem; hosts do not need a content-path recipe for gem views.
+
+### Keyboard list
+
+Arrow Up and Arrow Down move the highlighted option and keep it visible in the scrollable list (`scrollIntoView` with `block: "nearest"` after each render that has a highlight).
 
 ### Client modes
 

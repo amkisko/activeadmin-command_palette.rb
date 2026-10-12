@@ -31,6 +31,11 @@ module ActiveAdmin
       def reload!
         configuration.reload!
       end
+
+      # Path to the Tailwind CSS entry hosts concatenate into the ActiveAdmin stylesheet build.
+      def tailwind_entry_path
+        Engine.root.join("app/assets/stylesheets/activeadmin_command_palette.css")
+      end
     end
   end
 end
