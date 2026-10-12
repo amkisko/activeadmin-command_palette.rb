@@ -12,7 +12,7 @@ Hosts no longer need a content-path recipe for gem views or assets. Missing entr
 
 ## Next
 
-Release, then point hosts at the new version and concatenate the entry in their ActiveAdmin Tailwind build.
+Prepared as 0.1.8 for the install README. Commit a clean tree, then run `make release`. Point hosts at the new version and concatenate the entry in their ActiveAdmin Tailwind build.
 
 ## Source
 

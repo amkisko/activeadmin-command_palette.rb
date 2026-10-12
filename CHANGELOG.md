@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.8
+
 - Document `ActiveAdmin::CommandPalette.tailwind_entry_path` in the install README.
 
 ## 0.1.7
