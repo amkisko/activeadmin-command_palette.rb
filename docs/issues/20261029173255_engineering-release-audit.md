@@ -17,6 +17,7 @@ All listed fixes have high confidence and observed evidence from failing-then-pa
 - sessionStorage.setItem threw when browser storage was disabled or full, so remember aborted before location.assign. Catch the write failure and keep navigation. JavaScript regression: navigates when recent-item storage is unavailable.
 - Release confirmation converted EOF to an empty affirmative answer via String#chomp on nil. Add ReleaseVersionCheck.confirmation_accepted? and reject EOF while preserving an entered empty line and y. Unit examples cover yes, default Enter, n, and nil. Process-boundary examples load usr/bin/release.rb with Kernel#system stubbed so no real publish command runs.
 - Restrict the test workflow to contents: read and cancel superseded runs. pull_request remains enabled for branches that open against the repository.
+- Release audit failed on crass 1.0.7 (GHSA-pq4g-8rxf-4g29). Bump the transitive lock to 1.0.8 in Gemfile.lock and all appraisal lockfiles; bundler-audit then reports no vulnerabilities.
 
 Checks with Ruby 4.0.2 on arm64 macOS:
 
