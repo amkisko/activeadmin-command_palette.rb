@@ -130,6 +130,31 @@ test("shows only current authorized catalog entries in recent items", () => {
   assert.deepEqual(controller.recentItems(), [current]);
 });
 
+test("navigates when recent-item storage is unavailable", () => {
+  let assignedUrl = null;
+  globalThis.sessionStorage = {
+    getItem: () => null,
+    setItem() {
+      throw new Error("storage disabled");
+    },
+  };
+  globalThis.window = {
+    location: {
+      assign(url) {
+        assignedUrl = url;
+      },
+      href: "https://admin.example.test/users",
+      origin: "https://admin.example.test",
+    },
+  };
+  const controller = buildController();
+  controller.close = () => {};
+
+  controller.navigateItem({ kind: "navigate", method: "get", url: "/admin/users" });
+
+  assert.equal(assignedUrl, "/admin/users");
+});
+
 test("uses localized requirement labels in action help", () => {
   const controller = buildController({
     optionalValue: "optional-local",

@@ -1,3 +1,7 @@
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Ship the gem repository with CI, appraisals, Polyrun, and release tooling aligned to sibling ActiveAdmin gems.

@@ -1,5 +1,7 @@
 ## Participants
 
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Raise the ActiveAdmin dependency floor to `4.0.0.beta23`. Keep a single panel surface in the palette shell; remove filled rounded kind chips so rows do not read as nested cards.

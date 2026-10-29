@@ -1,5 +1,7 @@
 ## Participants
 
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Align community and quality scaffolding with active_version.rb and sibling gems: OpenSSF Scorecard workflow, markdownlint, Trunk config, license audit, bin wrappers, README links and sponsors, LICENSE copyright amkisko, and release confirm with git tag and GitHub release while keeping the ActiveAdmin appraisal matrix.

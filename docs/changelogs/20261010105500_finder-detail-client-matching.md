@@ -1,5 +1,7 @@
 ## Participants
 
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Implement Proposed RFC 0007: optional finder `detail` / `keywords`, navigate crumb keywords, longest-prefix matching, fuzzy local match, detail rows, kind section headers, and single-item Enter. Document host finder ranking in README.

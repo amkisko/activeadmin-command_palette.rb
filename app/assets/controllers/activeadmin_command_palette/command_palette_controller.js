@@ -489,7 +489,11 @@ export default class extends Controller {
       0,
       RECENT_LIMIT
     );
-    sessionStorage.setItem(RECENT_KEY, JSON.stringify(next));
+    try {
+      sessionStorage.setItem(RECENT_KEY, JSON.stringify(next));
+    } catch (_error) {
+      // Navigation must remain available when browser storage is disabled.
+    }
   }
 
   render() {

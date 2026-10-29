@@ -1,5 +1,9 @@
 # Tailwind entry and highlight scroll
 
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Add ActiveAdmin::CommandPalette.tailwind_entry_path and highlight scrollIntoView.

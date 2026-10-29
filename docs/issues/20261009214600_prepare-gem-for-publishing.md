@@ -1,5 +1,7 @@
 ## Participants
 
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Extract the package from the host path gem into amkisko/activeadmin_command_palette.rb with the same release tooling as other ActiveAdmin gems: Appraisals, Polyrun, Makefile, usr/bin/release.rb, GitHub Actions, and pray-managed community files.

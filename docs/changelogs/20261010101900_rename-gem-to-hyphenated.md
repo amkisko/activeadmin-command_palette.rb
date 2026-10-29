@@ -1,3 +1,7 @@
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Publish as `activeadmin-command_palette` per RubyGems naming: hyphen for an ActiveAdmin extension, underscore inside `command_palette`. Bundler default require is `activeadmin/command_palette`.

@@ -1,3 +1,7 @@
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 RubyGems package name is `activeadmin-command_palette` (hyphen after ActiveAdmin, underscore in `command_palette`) so Bundler default-requires `activeadmin/command_palette`.

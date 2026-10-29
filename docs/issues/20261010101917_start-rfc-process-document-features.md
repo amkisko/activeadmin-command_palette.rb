@@ -1,5 +1,7 @@
 ## Participants
 
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Start the house RFC process in this repository. Document already-shipped design as Stable Standards Track RFCs so later public contract changes cite numbers instead of README alone.

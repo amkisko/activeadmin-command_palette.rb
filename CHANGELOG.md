@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## Unreleased
+## 0.1.9 (2026-10-29)
+
+- Keep navigation working when browser storage is unavailable.
+- Fail closed when release confirmation input reaches EOF.
 
 ## 0.1.8
 

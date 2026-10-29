@@ -1,3 +1,7 @@
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Implement RFC 0008 with a CSRF-protected finder POST while retaining the existing GET operation. Bound combined search to 20 distinct finder kinds and 20 total records by default. Keep finder authorization in the host callback.

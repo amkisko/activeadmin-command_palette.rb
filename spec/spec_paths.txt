@@ -6,4 +6,5 @@ spec/lib/activeadmin/command_palette/helper_spec.rb
 spec/lib/activeadmin/command_palette/tailwind_entry_spec.rb
 spec/requests/command_palette_options_spec.rb
 spec/usr/license_audit_spec.rb
+spec/usr/release_version_check_spec.rb
 spec/views/active_admin/command_palette/palette_spec.rb

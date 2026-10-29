@@ -1,5 +1,9 @@
 # Highlight scroll into view
 
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 After rendering with a highlighted option, call scrollIntoView on that option with block nearest so Arrow Up and Arrow Down keep the focused row inside the scrollable list.

@@ -1,5 +1,9 @@
 # Tailwind entry and highlight scroll
 
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Ship a gem-owned Tailwind entry that hosts concatenate into the ActiveAdmin CSS build. Expose it as ActiveAdmin::CommandPalette.tailwind_entry_path. Keep shell class tokens listed there in sync with the palette partial and Stimulus controller.

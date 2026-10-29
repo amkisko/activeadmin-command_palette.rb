@@ -1,5 +1,9 @@
 # Highlight scroll into view
 
+## Participants
+
+Andrei Makarov (@amkisko)
+
 ## Decisions
 
 Scroll the highlighted command palette option into view on each highlight render.
