@@ -29,7 +29,7 @@ ActiveAdmin::CommandPalette.configure do |config|
 end
 ```
 
-The client calls `GET …/options?kind=user&q=an` after debounce. Operators type `@an` when a prefix is registered, or enter kind find from a `view` action.
+The client calls `GET .../options?kind=user&q=an` after debounce. Operators type `@an` when a prefix is registered, or enter kind find from a `view` action.
 
 ## Reference-level explanation
 

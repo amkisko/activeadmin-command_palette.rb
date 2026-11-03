@@ -64,13 +64,13 @@ RSpec.describe ActiveAdmin::CommandPalette::Configuration do
         label: "View user",
         verb: "view",
         finder_kind: "user",
-        help: "View user — type a name"
+        help: "View user - type a name"
       }]
 
       expect(config.actions.first).to include(
         verb: "view",
         finder_kind: "user",
-        help: "View user — type a name",
+        help: "View user - type a name",
         method: "get"
       )
     end

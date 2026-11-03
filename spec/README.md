@@ -30,10 +30,10 @@ See `polyrun.yml`.
 
 ## Layout
 
-- `spec/lib` — unit specs for catalog, compiler, configuration, finder, and helpers
-- `spec/requests` — options endpoint contract
-- `spec/javascript` — command palette client behavior
-- `spec/dummy/` — minimal Rails app for ActiveAdmin-backed specs
+- `spec/lib` - unit specs for catalog, compiler, configuration, finder, and helpers
+- `spec/requests` - options endpoint contract
+- `spec/javascript` - command palette client behavior
+- `spec/dummy/` - minimal Rails app for ActiveAdmin-backed specs
 
 ## Guidelines
 

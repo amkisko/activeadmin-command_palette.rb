@@ -26,7 +26,7 @@ ActiveAdmin.register User do
     find_by :email, :nickname, :name
     order :name
     actions :view, :create, :edit, :destroy
-    create help: "Create user — optional email=", params: [
+    create help: "Create user - optional email=", params: [
       {name: "email", required: false, query_key: "user[email]"}
     ]
     member "Open in chat",

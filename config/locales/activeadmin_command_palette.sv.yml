@@ -5,17 +5,17 @@ sv:
       open: Öppna kommandopaletten
       open_short: Sök
       query_label: Sök kommandon
-      placeholder: "Gå till…  > åtgärder  ? hjälp"
-      footer: "↑↓ navigera  ↵ öppna  esc stäng"
+      placeholder: "Gå till...  > åtgärder  ? hjälp"
+      footer: "Upp/Ner navigera  Enter öppna  Esc stäng"
       empty: Inga träffar
-      loading: Söker…
+      loading: Söker...
       error: Sökningen misslyckades. Försök igen.
       unauthorized: Sessionen har gått ut. Logga in igen för att fortsätta söka.
       forbidden: Du har inte behörighet att söka efter dessa poster.
       required: obligatorisk
       optional: valfri
       help:
-        go: "Gå / Sök — skriv för att hoppa till sidor och poster"
-        actions: "> Åtgärder — kör registrerade kommandon"
-        resource: "> Visa / Skapa — sök eller öppna ny; Redigera / Ta bort på postsida"
-        modes: "? Hjälp — visa dessa tipslägen"
+        go: "Gå / Sök - skriv för att hoppa till sidor och poster"
+        actions: "> Åtgärder - kör registrerade kommandon"
+        resource: "> Visa / Skapa - sök eller öppna ny; Redigera / Ta bort på postsida"
+        modes: "? Hjälp - visa dessa tipslägen"

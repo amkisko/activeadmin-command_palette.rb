@@ -254,7 +254,7 @@ RSpec.describe ActiveAdmin::CommandPalette::Catalog do
       expect(described_class.navigate(view)).to eq([{
         id: "nav-users",
         kind: "navigate",
-        label: "Team › Users",
+        label: "Team > Users",
         keywords: %w[team users],
         url: "/admin/users",
         method: "get"

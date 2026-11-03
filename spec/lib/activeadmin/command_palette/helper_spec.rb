@@ -94,6 +94,23 @@ RSpec.describe ActiveAdmin::CommandPalette::Helper do
     end
   end
 
+  describe "#command_palette_sign_in_path" do
+    it "prefers the ActiveAdmin Devise session path when present" do
+      helper_host.define_singleton_method(:new_admin_user_session_path) { "/admin/login" }
+      helper_host.define_singleton_method(:new_user_session_path) { "/user/sign_in" }
+
+      expect(helper_host.command_palette_sign_in_path).to eq("/admin/login")
+    end
+
+    it "falls back to the User Devise path, then a default" do
+      expect(helper_host.command_palette_sign_in_path).to eq("/user/sign_in")
+
+      helper_host.define_singleton_method(:new_user_session_path) { "/users/sign_in" }
+
+      expect(helper_host.command_palette_sign_in_path).to eq("/users/sign_in")
+    end
+  end
+
   describe "#command_palette_data_attributes" do
     it "includes a context value" do
       helper_host.controller_action = "index"

@@ -152,7 +152,7 @@ test("navigates when recent-item storage is unavailable", () => {
 
   controller.navigateItem({ kind: "navigate", method: "get", url: "/admin/users" });
 
-  assert.equal(assignedUrl, "/admin/users");
+  assert.equal(assignedUrl, "https://admin.example.test/admin/users");
 });
 
 test("uses localized requirement labels in action help", () => {
@@ -260,6 +260,10 @@ test("refuses executable URLs and cross-origin mutations", () => {
     url: "https://other.example.test/delete",
   });
   assert.equal(submitted, false);
+
+  controller.status = null;
+  controller.navigateItem({ kind: "navigate", method: "get", url: "/admin/dashboard" });
+  assert.equal(assignedUrl, "https://admin.example.test/admin/dashboard");
 });
 
 test("announces asynchronous search states", () => {

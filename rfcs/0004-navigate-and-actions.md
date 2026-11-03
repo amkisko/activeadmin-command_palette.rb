@@ -17,7 +17,7 @@ Menu labels and URLs already exist in ActiveAdmin. Requiring hosts to re-registe
 
 ## Guide-level explanation
 
-Navigate items appear as kind `navigate` with breadcrumb labels joined by ` › `. Global shortcuts go in `config.actions`. Resource DSL `actions :view, :create, :edit, :destroy` and `member` compile into the same list on `reload!` (RFC 0006). On each request the helper emits filtered actions and a `context` object. Operators type `>` to filter actions. `view` enters kind find. `create` accepts optional `name=value` tokens mapped through `params` / `query_key`.
+Navigate items appear as kind `navigate` with breadcrumb labels joined by ` > `. Global shortcuts go in `config.actions`. Resource DSL `actions :view, :create, :edit, :destroy` and `member` compile into the same list on `reload!` (RFC 0006). On each request the helper emits filtered actions and a `context` object. Operators type `>` to filter actions. `view` enters kind find. `create` accepts optional `name=value` tokens mapped through `params` / `query_key`.
 
 ## Reference-level explanation
 

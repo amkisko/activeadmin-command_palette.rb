@@ -84,6 +84,21 @@ RSpec.describe ActiveAdmin::CommandPalette::Finder do
     expect(yielded).to eq(2)
   end
 
+  it "treats a nil finder payload as an empty list" do
+    ActiveAdmin::CommandPalette.configure do |config|
+      config.register_finder("workspace") { |**| nil }
+    end
+
+    result = described_class.options(
+      kind: "workspace",
+      query: "alpha",
+      helpers: nil,
+      user: nil
+    )
+
+    expect(result).to eq([])
+  end
+
   it "keeps optional detail and keywords from the host finder", :aggregate_failures do
     ActiveAdmin::CommandPalette.configure do |config|
       config.register_finder "user" do |**|

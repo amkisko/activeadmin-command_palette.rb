@@ -3,6 +3,8 @@
 module ActiveAdmin
   module CommandPalette
     class OptionsController < ::ApplicationController
+      protect_from_forgery with: :exception
+
       before_action :prevent_command_palette_caching
       before_action :authenticate_command_palette_user!
 

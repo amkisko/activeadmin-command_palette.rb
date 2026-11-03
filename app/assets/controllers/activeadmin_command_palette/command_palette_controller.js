@@ -21,7 +21,7 @@ export default class extends Controller {
     minQueryLength: { type: Number, default: 2 },
     requestTimeout: { type: Number, default: REQUEST_TIMEOUT_MS },
     empty: { type: String, default: "No matches" },
-    loading: { type: String, default: "Searching…" },
+    loading: { type: String, default: "Searching..." },
     error: { type: String, default: "Search failed. Try again." },
     unauthorized: {
       type: String,
@@ -720,7 +720,7 @@ export default class extends Controller {
       rows.push({
         id: `${action.id}-param-${param.name}`,
         kind: "help",
-        label: `${param.name}= (${required})${param.help ? ` — ${param.help}` : ""}`,
+        label: `${param.name}= (${required})${param.help ? ` - ${param.help}` : ""}`,
         url: null,
       });
     });
@@ -789,7 +789,7 @@ export default class extends Controller {
       const resolved = new URL(url, window.location.href);
       if (resolved.protocol !== "http:" && resolved.protocol !== "https:") return null;
       if (sameOrigin && resolved.origin !== window.location.origin) return null;
-      return url;
+      return resolved.href;
     } catch (_error) {
       return null;
     }

@@ -1,9 +1,16 @@
 # CHANGELOG
 
-## 0.1.9 (2026-10-29)
+## 0.1.9 (2026-11-03)
 
 - Keep navigation working when browser storage is unavailable.
 - Fail closed when release confirmation input reaches EOF.
+- Enforce CSRF protection on the options endpoint itself.
+- Treat a nil host finder payload as an empty result list.
+- Prefer `new_admin_user_session_path` before `new_user_session_path` for the sign-in recovery link.
+- Navigate only through resolved `http`/`https` URLs after same-origin checks.
+- Document host finder authorization, POST preference, and options rate limits in the install README.
+- Use ASCII punctuation in palette copy, breadcrumbs, and help strings.
+- Mark RFC 0007 and RFC 0008 Stable after their feedback windows closed.
 
 ## 0.1.8
 

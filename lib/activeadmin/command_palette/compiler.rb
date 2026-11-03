@@ -83,7 +83,7 @@ module ActiveAdmin
               finder_kind: kind,
               scope: "global",
               when: "any",
-              help: "View #{noun} — type a search term"
+              help: "View #{noun} - type a search term"
             }
           end
 

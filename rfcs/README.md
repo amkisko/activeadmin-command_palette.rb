@@ -45,10 +45,6 @@ Procedural: RFC 0001 (Proposed).
 
 Informational: RFC 0002 problem and positioning (Stable).
 
-Standards Track, Stable: RFC 0003 palette shell, RFC 0004 navigate and actions, RFC 0005 finder protocol, RFC 0006 resource DSL.
-
-Standards Track, Proposed: RFC 0007 finder result detail and client matching (feedback until 2026-10-24).
-
-Standards Track, Proposed: RFC 0008 bounded finder POST (feedback until 2026-10-24).
+Standards Track, Stable: RFC 0003 palette shell, RFC 0004 navigate and actions, RFC 0005 finder protocol, RFC 0006 resource DSL, RFC 0007 finder result detail and client matching, RFC 0008 bounded finder POST.
 
 A public API, file, or protocol change needs a new Standards Track RFC.

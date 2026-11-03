@@ -58,7 +58,7 @@ ActiveAdmin.register User do
     find_by :email, :nickname, :name
     order :name
     actions :view, :create, :edit, :destroy
-    create help: "Create user — optional email=", params: [
+    create help: "Create user - optional email=", params: [
       {name: "email", required: false, query_key: "user[email]"}
     ]
     member "Open in chat",
@@ -88,7 +88,7 @@ end
 
 `reload!` (run from ActiveAdmin `after_load`) merges resource DSL actions/finders with the global `actions` list.
 
-Action fields: `scope` (`global` / `collection` / `member`), `when` (`any` / `index` / `show` / `new` / `edit`), `resource`, `verb` (`view` / `create` / `edit` / `destroy` / …), `params`, `help`, `finder_kind`, `query`, `if` (boolean or callable evaluated in the view on each request), optional `detail` / `keywords`. The layout emits a page `context` value used to gate member and collection actions.
+Action fields: `scope` (`global` / `collection` / `member`), `when` (`any` / `index` / `show` / `new` / `edit`), `resource`, `verb` (`view` / `create` / `edit` / `destroy` / ...), `params`, `help`, `finder_kind`, `query`, `if` (boolean or callable evaluated in the view on each request), optional `detail` / `keywords`. The layout emits a page `context` value used to gate member and collection actions.
 
 Finder rows may include optional `detail` (second line under the label; `subtitle` is accepted as an alias) and `keywords` (extra client match strings). Longer registered prefixes win when several share a start (for example `@team` before `@`).
 
@@ -96,7 +96,13 @@ Finder rows may include optional `detail` (second line under the label; `subtitl
 
 Apply host authorization before returning rows. Prefer this match order when building SQL: exact primary key, then exact unique columns from `find_by`, then prefix match, then `ILIKE` / `LIKE`, then `limit`. Put a stable person-facing name in `label` and email, identifier, or id in `detail` when that helps operators disambiguate.
 
-Mount the engine inside your authenticated admin boundary and set `authorize_with` so the JSON options endpoint stays closed to unsigned or unauthorized callers.
+Host checklist before production:
+
+1. Mount the engine inside the authenticated admin boundary.
+2. Set `authorize_with` so unsigned or unauthorized callers cannot hit the JSON options endpoint.
+3. Scope every finder with the same record policy as the ActiveAdmin resource (`accessible_by`, `policy_scope`, or equivalent). Do not copy a bare `.all` finder into a multi-role or multi-tenant app.
+4. Prefer the CSRF-protected `POST` client path. Treat `GET .../options` as a legacy integration surface: `q` can appear in access logs, proxies, and history.
+5. Rate-limit `/admin/command_palette/options` at the host (the gem caps rows per request, not request volume).
 
 ### Related surfaces
 
@@ -135,7 +141,7 @@ make release
 
 ## Design RFCs
 
-Numbered design documents for the public contract live in [`rfcs/`](rfcs/README.md). Shipped features are specified in RFC 0003 through RFC 0006. Finder detail and bounded POST search are proposed in RFC 0007 and RFC 0008. Process rules are RFC 0001.
+Numbered design documents for the public contract live in [`rfcs/`](rfcs/README.md). Shipped features are specified in RFC 0003 through RFC 0008. Process rules are RFC 0001.
 
 ## Links
 

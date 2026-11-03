@@ -167,7 +167,7 @@ module ActiveAdmin
               entry = {
                 id: "nav-#{item.id}",
                 kind: "navigate",
-                label: crumbs.join(" › "),
+                label: crumbs.join(" > "),
                 url: url,
                 method: "get"
               }

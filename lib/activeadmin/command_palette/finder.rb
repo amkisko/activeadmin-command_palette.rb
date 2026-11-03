@@ -65,6 +65,8 @@ module ActiveAdmin
         end
 
         def normalize_results(results, kind:, limit:)
+          return [] if results.nil?
+
           results.take(limit).map { |item| normalize(item, kind) }
         end
 

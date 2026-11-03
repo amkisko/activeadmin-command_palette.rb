@@ -70,11 +70,11 @@ module ActiveAdmin
       end
 
       def command_palette_sign_in_path
-        if respond_to?(:new_user_session_path)
-          new_user_session_path
-        else
-          "/user/sign_in"
+        %i[new_admin_user_session_path new_user_session_path].each do |helper_name|
+          return public_send(helper_name) if respond_to?(helper_name)
         end
+
+        "/user/sign_in"
       end
 
       def command_palette_help_items

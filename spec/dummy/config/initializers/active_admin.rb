@@ -10,6 +10,9 @@ end
 ActiveAdmin::CommandPalette.configure do |config|
   config.authorize_with = ->(controller) { controller.current_user.present? }
   config.default_finder = lambda { |registration:, query:, helpers:, user:, limit:|
+    # Dummy app has no authorization library. Production hosts must start from the
+    # same policy scope as the ActiveAdmin resource (for example accessible_by or
+    # policy_scope), never bare .all for role- or tenant-limited data.
     scope = registration.resource_class.all
     if registration.find_columns.any?
       conditions = registration.find_columns.map { |column| "#{column} LIKE ?" }

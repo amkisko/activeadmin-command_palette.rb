@@ -2,11 +2,11 @@
 
 - Feature Name: finder-result-detail-and-client-matching
 - Type: Standards Track
-- Status: Proposed
+- Status: Stable
 - Created: 2026-10-10
 - Author: Andrei Makarov
-- Feedback until: 2026-10-24
 - Relates: RFC 0003, RFC 0004, RFC 0005
+- Note: Shipped in 0.1.6; marked Stable after the feedback window closed.
 
 ## Summary
 
@@ -47,7 +47,7 @@ Unknown keys remain ignored. Limit still applies after normalize.
 
 ### Prefix matching
 
-Client `parseMode` sorts registered prefixes by descending string length, then picks the first whose `value.startsWith(prefix)`. Empty prefixes are skipped. This supersedes RFC 0005 “Object.entries order” for prefix selection.
+Client `parseMode` sorts registered prefixes by descending string length, then picks the first whose `value.startsWith(prefix)`. Empty prefixes are skipped. This supersedes RFC 0005 "Object.entries order" for prefix selection.
 
 ### Local match
 

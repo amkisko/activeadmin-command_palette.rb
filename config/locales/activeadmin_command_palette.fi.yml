@@ -5,17 +5,17 @@ fi:
       open: Avaa komentovalikko
       open_short: Haku
       query_label: Hae komentoja
-      placeholder: "Siirry…  > toiminnot  ? ohje"
-      footer: "↑↓ siirry  ↵ avaa  esc sulje"
+      placeholder: "Siirry...  > toiminnot  ? ohje"
+      footer: "Ylös/Alas siirry  Enter avaa  Esc sulje"
       empty: Ei osumia
-      loading: Haetaan…
+      loading: Haetaan...
       error: Haku epäonnistui. Yritä uudelleen.
       unauthorized: Istunto päättyi. Kirjaudu uudelleen jatkaaksesi hakua.
       forbidden: Sinulla ei ole oikeutta hakea näitä tietueita.
       required: pakollinen
       optional: valinnainen
       help:
-        go: "Siirry / Haku — kirjoita sivuille ja tietueisiin"
-        actions: "> Toiminnot — suorita rekisteröityjä komentoja"
-        resource: "> Näytä / Luo — hae tai avaa uusi; Muokkaa / Poista tietuesivulla"
-        modes: "? Ohje — näytä nämä tilavihjeet"
+        go: "Siirry / Haku - kirjoita sivuille ja tietueisiin"
+        actions: "> Toiminnot - suorita rekisteröityjä komentoja"
+        resource: "> Näytä / Luo - hae tai avaa uusi; Muokkaa / Poista tietuesivulla"
+        modes: "? Ohje - näytä nämä tilavihjeet"

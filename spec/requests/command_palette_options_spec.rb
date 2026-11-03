@@ -96,5 +96,19 @@ RSpec.describe "Command palette options", type: :request do
 
       expect(filtered["q"]).to eq("[FILTERED]")
     end
+
+    it "rejects POST without an authenticity token when forgery protection is on" do
+      previous = ActionController::Base.allow_forgery_protection
+      ActionController::Base.allow_forgery_protection = true
+
+      post active_admin_command_palette.options_path,
+        params: {kind: "user", q: "Shared"},
+        as: :json,
+        headers: {"X-CSRF-Token" => "invalid"}
+
+      expect(response).to have_http_status(:unprocessable_content)
+    ensure
+      ActionController::Base.allow_forgery_protection = previous
+    end
   end
 end

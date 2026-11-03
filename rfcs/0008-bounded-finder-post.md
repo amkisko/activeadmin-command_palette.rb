@@ -2,12 +2,12 @@
 
 - Feature Name: bounded-finder-post
 - Type: Standards Track
-- Status: Proposed
+- Status: Stable
 - Created: 2026-10-10
 - Author: Andrei Makarov
 - Stakeholders: project maintainers and host application owners
-- Feedback until: 2026-10-24
 - Relates: RFC 0003, RFC 0005
+- Note: Shipped in 0.1.6; marked Stable after the feedback window closed.
 
 ## Summary
 
@@ -31,7 +31,7 @@ X-CSRF-Token: ...
 
 `config.limit` remains the result ceiling. `config.search_kind_limit` sets the maximum number of distinct finder kinds evaluated by a combined search and defaults to 20. A prefixed or `view` search sends one `kind` and is not affected by the combined kind ceiling.
 
-Existing integrations may continue to call `GET …/options?kind=user&q=ada`.
+Existing integrations may continue to call `GET .../options?kind=user&q=ada`.
 
 ## Reference-level explanation
 
