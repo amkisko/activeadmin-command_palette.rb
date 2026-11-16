@@ -7,7 +7,7 @@ module ActiveAdmin
     # inherit ActiveAdmin config.
     module Routes
       def self.draw(mapper, at: "/admin/command_palette", as: "active_admin_command_palette")
-        mapper.mount Engine => at, as: as
+        mapper.mount Engine => at, :as => as
       end
     end
   end

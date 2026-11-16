@@ -77,16 +77,17 @@ module ActiveAdmin
           return
         end
 
+        head :forbidden unless command_palette_adapter_allows_read?
+      end
+
+      def command_palette_adapter_allows_read?
         namespace = command_palette_active_admin_namespace
         page_config = command_palette_page_config
-        if namespace.nil? || page_config.nil?
-          head :forbidden
-          return
-        end
+        return false if namespace.nil? || page_config.nil?
 
         adapter_class = command_palette_authorization_adapter(namespace)
         adapter = adapter_class.new(page_config, current_command_palette_user)
-        head :forbidden unless adapter.authorized?(ActiveAdmin::Authorization::READ, page_config)
+        adapter.authorized?(ActiveAdmin::Authorization::READ, page_config)
       end
 
       def command_palette_authorization_adapter(namespace)

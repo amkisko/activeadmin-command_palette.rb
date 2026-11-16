@@ -15,7 +15,7 @@ RSpec.describe "Command palette with admin GraphQL", type: :system do
     expect(dialog).to be_present
 
     payload = page.driver.with_playwright_page do |browser_page|
-      browser_page.evaluate(<<~'JS')
+      browser_page.evaluate(<<~JS)
         async () => {
           const response = await fetch("/admin/graphql", {
             method: "POST",

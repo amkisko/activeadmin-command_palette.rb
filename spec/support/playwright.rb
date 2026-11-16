@@ -47,16 +47,24 @@ module SystemUrlOptions
   module_function
 
   def apply!
-    host = Capybara.server_host
-    port = Capybara.server_port
     @previous_controller = Rails.application.config.action_controller.default_url_options
     Rails.application.config.action_controller.default_url_options ||= {}
-    @targets = [
+    @targets = url_option_targets
+    @previous = @targets.map(&:dup)
+    assign_system_url_options!
+  end
+
+  def url_option_targets
+    [
       Rails.application.default_url_options,
       Rails.application.routes.default_url_options,
       Rails.application.config.action_controller.default_url_options
     ]
-    @previous = @targets.map(&:dup)
+  end
+
+  def assign_system_url_options!
+    host = Capybara.server_host
+    port = Capybara.server_port
     @targets.each do |options|
       options[:host] = host
       options[:port] = port if port
