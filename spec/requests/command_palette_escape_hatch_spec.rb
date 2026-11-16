@@ -12,20 +12,22 @@ RSpec.describe "Command palette engine escape hatch", type: :request do
     # authorize_with (or fail closed). Mirror a signed-in admin gate here.
     configuration.authorize_with = ->(controller) { controller.current_user.present? }
 
+    # Load ActiveAdmin resources before reload_routes so ActiveAdmin.routes
+    # draws member helpers (for example admin_user_path) that finders need.
     ActiveAdmin.application.unload!
-    Rails.application.reload_routes!
-    draw_escape_hatch_routes!
     ActiveAdmin.application.load!
     ActiveAdmin::CommandPalette.reload!
+    Rails.application.reload_routes!
+    draw_escape_hatch_routes!
 
     example.run
   ensure
     configuration.auto_register_page = previous_auto
     configuration.authorize_with = previous_authorizer
     ActiveAdmin.application.unload!
-    Rails.application.reload_routes!
     ActiveAdmin.application.load!
     ActiveAdmin::CommandPalette.reload!
+    Rails.application.reload_routes!
   end
 
   def draw_escape_hatch_routes!
