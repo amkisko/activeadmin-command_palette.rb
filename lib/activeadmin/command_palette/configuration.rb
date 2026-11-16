@@ -10,7 +10,8 @@ module ActiveAdmin
       ALLOWED_SCOPES = %w[global collection member].freeze
       ALLOWED_WHENS = %w[any index show new edit].freeze
 
-      attr_accessor :min_query_length, :limit, :search_kind_limit, :authorize_with, :default_finder
+      attr_accessor :min_query_length, :limit, :search_kind_limit, :authorize_with, :default_finder,
+        :auto_register_page
       attr_reader :finders, :actions, :prefixes
 
       def initialize
@@ -24,6 +25,7 @@ module ActiveAdmin
         @prefixes = {}
         @authorize_with = nil
         @default_finder = nil
+        @auto_register_page = true
       end
 
       def register_finder(kind, &block)

@@ -46,12 +46,17 @@ Gem::Specification.new do |spec|
   spec.add_dependency "importmap-rails"
   spec.add_dependency "rails", ">= 7.2"
 
+  spec.add_development_dependency "activeadmin-graphql", ">= 0.4.1"
   spec.add_development_dependency "appraisal", "~> 2"
   spec.add_development_dependency "bundler", ">= 2"
   spec.add_development_dependency "bundler-audit", "~> 0.9"
+  spec.add_development_dependency "capybara", ">= 3.40"
+  spec.add_development_dependency "capybara-playwright-driver", ">= 0.5"
   spec.add_development_dependency "factory_bot", "~> 6"
   spec.add_development_dependency "polyrun", ">= 2.2.9"
+  spec.add_development_dependency "propshaft", ">= 1.0"
   spec.add_development_dependency "prosopite", "~> 2.0"
+  spec.add_development_dependency "puma", ">= 6"
   spec.add_development_dependency "rake", "~> 13"
   spec.add_development_dependency "rbs", "~> 4"
   spec.add_development_dependency "rspec", "~> 3"
@@ -65,4 +70,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "standard-performance", "~> 1.8"
   spec.add_development_dependency "standard-rails", "~> 1.5"
   spec.add_development_dependency "standard-rspec", "~> 0.3"
+  spec.add_development_dependency "stimulus-rails", ">= 1.3"
 end

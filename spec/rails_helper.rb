@@ -9,7 +9,11 @@ require_relative "dummy/config/environment"
 DUMMY_ROOT = Rails.root unless defined?(DUMMY_ROOT)
 
 ActiveRecord::Base.connection_pool.with_connection do |connection|
-  next if connection.table_exists?(:users)
+  schema_ready =
+    connection.table_exists?(:users) &&
+    connection.table_exists?(:articles) &&
+    connection.table_exists?(:active_admin_comments)
+  next if schema_ready
 
   ActiveRecord::Schema.verbose = false
   load DUMMY_ROOT.join("db", "schema.rb").to_s
@@ -18,6 +22,9 @@ end
 require "rspec/rails"
 require "factory_bot"
 require "activeadmin"
+require "capybara/rspec"
+
+Dir[File.expand_path("support/**/*.rb", __dir__)].sort.each { |path| require path }
 
 Rails.application.reload_routes!
 ActiveAdmin.application.load!
@@ -43,6 +50,7 @@ end
 
 RSpec.configure do |config|
   config.include AuthHelpers, type: :request
+  config.include AuthHelpers, type: :system
 end
 
 FactoryBot.define do

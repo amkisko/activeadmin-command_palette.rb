@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <title><%= html_head_site_title %></title>
+  <%= render "active_admin/html_head" %>
+  <%# Dummy has no Tailwind build; keep palette show/hide and a readable shell. %>
+  <style>
+    .hidden { display: none !important; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body
+  class="bg-white text-gray-950 antialiased"
+  data-controller="<%= command_palette_controller_name %>"
+  <%= tag.attributes(command_palette_data_attributes) %>>
+  <%= render "active_admin/site_header", title: site_title %>
+  <%= render_command_palette %>
+  <div class="xl:ms-60 pt-16">
+    <%= render "active_admin/main_navigation" %>
+    <%= render "active_admin/page_header", title: @page_title || page_title %>
+    <%= render "active_admin/flash_messages" %>
+    <div data-test-page-content class="px-2.5 lg:px-5">
+      <%= yield %>
+      <%= render "active_admin/sidebar" %>
+    </div>
+    <%= render "active_admin/site_footer" %>
+  </div>
+</body>
+</html>

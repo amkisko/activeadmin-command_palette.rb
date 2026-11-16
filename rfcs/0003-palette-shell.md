@@ -5,7 +5,7 @@
 - Status: Stable
 - Created: 2026-10-10
 - Author: Andrei Makarov
-- Relates: RFC 0002, RFC 0004, RFC 0005
+- Relates: RFC 0002, RFC 0004, RFC 0005, RFC 0009
 
 ## Summary
 
@@ -17,13 +17,9 @@ Without a shared shell, every host would reimplement shortcut handling, list ren
 
 ## Guide-level explanation
 
-Mount the engine, for example:
-
-```ruby
-authenticate :user do
-  mount ActiveAdmin::CommandPalette::Engine => "/admin/command_palette", as: "active_admin_command_palette"
-end
-```
+Add the gem and keep `ActiveAdmin.routes(self)`. Options are drawn by a hidden
+Command Palette page (RFC 0009). An explicit engine mount remains available when
+`auto_register_page` is false.
 
 On the admin layout body, set the Stimulus controller `activeadmin-command-palette--command-palette` and merge `command_palette_data_attributes`. Render `render_command_palette` and expose a header control that calls `show`. Operators press Cmd+K or Ctrl+K to toggle. Query prefixes: `>` for actions, `?` for help, host-configured kind prefixes for record search, otherwise combined find across navigate and finders.
 
@@ -31,7 +27,7 @@ On the admin layout body, set the Stimulus controller `activeadmin-command-palet
 
 ### Install contract
 
-- Engine route helper prefix `active_admin_command_palette` exposes `options_path` (RFC 0005).
+- Default options path helper: `admin_command_palette_options_path` (RFC 0005, RFC 0009). Engine helper `active_admin_command_palette.options_path` remains for the escape hatch.
 - Helper module `ActiveAdmin::CommandPalette::Helper` provides `command_palette_controller_name`, `command_palette_data_attributes`, `render_command_palette`, and related readers.
 - Importmap pin: `controllers/activeadmin_command_palette/command_palette_controller`.
 - Locales under `active_admin.command_palette.*` for empty, loading, error, unauthorized, and help rows. Built-in files: `en`, `fi`, `sv`.

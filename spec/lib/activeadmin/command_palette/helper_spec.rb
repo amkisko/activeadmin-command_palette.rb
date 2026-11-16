@@ -33,10 +33,8 @@ RSpec.describe ActiveAdmin::CommandPalette::Helper do
         "token"
       end
 
-      def active_admin_command_palette
-        Object.new.tap do |routes|
-          routes.define_singleton_method(:options_path) { "/admin/command_palette/options" }
-        end
+      def admin_command_palette_options_path
+        "/admin/command_palette/options"
       end
 
       def command_palette_navigate_items
@@ -108,6 +106,23 @@ RSpec.describe ActiveAdmin::CommandPalette::Helper do
       helper_host.define_singleton_method(:new_user_session_path) { "/users/sign_in" }
 
       expect(helper_host.command_palette_sign_in_path).to eq("/users/sign_in")
+    end
+  end
+
+  describe "#command_palette_options_url" do
+    it "prefers the ActiveAdmin page helper" do
+      expect(helper_host.command_palette_options_url).to eq("/admin/command_palette/options")
+    end
+
+    it "falls back to the engine helper when the page helper is absent" do
+      helper_host.singleton_class.undef_method(:admin_command_palette_options_path)
+      helper_host.define_singleton_method(:active_admin_command_palette) do
+        Object.new.tap do |routes|
+          routes.define_singleton_method(:options_path) { "/mounted/command_palette/options" }
+        end
+      end
+
+      expect(helper_host.command_palette_options_url).to eq("/mounted/command_palette/options")
     end
   end
 

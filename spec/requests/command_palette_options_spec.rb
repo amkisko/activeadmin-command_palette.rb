@@ -3,11 +3,15 @@
 require "rails_helper"
 
 RSpec.describe "Command palette options", type: :request do
-  describe "GET /admin/command_palette/options" do
+  def options_path
+    admin_command_palette_options_path
+  end
+
+  describe "GET /admin/command_palette/options via ActiveAdmin.routes" do
     it "rejects unauthenticated requests" do
       sign_out
 
-      get active_admin_command_palette.options_path, params: {kind: "user", q: "alpha"}
+      get options_path, params: {kind: "user", q: "alpha"}
 
       expect(response).to have_http_status(:unauthorized)
     end
@@ -22,17 +26,39 @@ RSpec.describe "Command palette options", type: :request do
         previous_authorizer = configuration.authorize_with
         configuration.authorize_with = ->(_controller) { false }
 
-        get active_admin_command_palette.options_path, params: {kind: "user", q: "alpha"}
+        get options_path, params: {kind: "user", q: "alpha"}
 
         expect(response).to have_http_status(:forbidden)
       ensure
         configuration.authorize_with = previous_authorizer
       end
 
+      it "returns forbidden when the ActiveAdmin authorization adapter denies read" do
+        namespace = ActiveAdmin.application.namespaces[:admin]
+        previous_adapter = namespace.authorization_adapter
+        namespace.authorization_adapter = Class.new(ActiveAdmin::AuthorizationAdapter) do
+          def authorized?(*)
+            false
+          end
+        end
+
+        get options_path, params: {kind: "user", q: "alpha"}
+
+        expect(response).to have_http_status(:forbidden)
+      ensure
+        namespace.authorization_adapter = previous_adapter
+      end
+
+      it "redirects the Command Palette index away from an empty page" do
+        get admin_command_palette_path
+
+        expect(response).to redirect_to(admin_root_path)
+      end
+
       it "returns an empty list for queries shorter than two characters" do
         create(:user, name: "Alpha Person", email: "alpha@example.com")
 
-        get active_admin_command_palette.options_path, params: {kind: "user", q: "a"}
+        get options_path, params: {kind: "user", q: "a"}
 
         expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to eq([])
@@ -41,7 +67,7 @@ RSpec.describe "Command palette options", type: :request do
       it "finds a user by name", :aggregate_failures do
         person = create(:user, name: "Alpha Person", email: "alpha@example.com")
 
-        get active_admin_command_palette.options_path, params: {kind: "user", q: "Alpha"}
+        get options_path, params: {kind: "user", q: "Alpha"}
 
         expect(response).to have_http_status(:ok)
         body = response.parsed_body
@@ -56,7 +82,7 @@ RSpec.describe "Command palette options", type: :request do
       it "finds an article by title" do
         article = create(:article, title: "Palette Notes")
 
-        get active_admin_command_palette.options_path, params: {kind: "article", q: "Palette"}
+        get options_path, params: {kind: "article", q: "Palette"}
 
         expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to contain_exactly(hash_including(
@@ -78,7 +104,7 @@ RSpec.describe "Command palette options", type: :request do
       person = create(:user, name: "Shared Term", email: "shared@example.com")
       article = create(:article, title: "Shared Term")
 
-      post active_admin_command_palette.options_path,
+      post options_path,
         params: {kinds: %w[user article], q: "Shared"},
         as: :json
 
@@ -101,7 +127,7 @@ RSpec.describe "Command palette options", type: :request do
       previous = ActionController::Base.allow_forgery_protection
       ActionController::Base.allow_forgery_protection = true
 
-      post active_admin_command_palette.options_path,
+      post options_path,
         params: {kind: "user", q: "Shared"},
         as: :json,
         headers: {"X-CSRF-Token" => "invalid"}

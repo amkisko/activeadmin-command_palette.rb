@@ -5,11 +5,11 @@
 - Status: Stable
 - Created: 2026-10-10
 - Author: Andrei Makarov
-- Relates: RFC 0002, RFC 0003, RFC 0006
+- Relates: RFC 0002, RFC 0003, RFC 0006, RFC 0009
 
 ## Summary
 
-Hosts register per-kind finder callables (or supply `default_finder` for the resource DSL). The engine exposes an authenticated JSON `options` endpoint. The client searches with kind and query; the gem normalizes results and enforces minimum query length and per-kind limit. Prefixes map query prefixes to kinds.
+Hosts register per-kind finder callables (or supply `default_finder` for the resource DSL). An authenticated JSON `options` endpoint (ActiveAdmin page by default, RFC 0009) serves search. The client searches with kind and query; the gem normalizes results and enforces minimum query length and per-kind limit. Prefixes map query prefixes to kinds.
 
 ## Motivation
 
@@ -53,7 +53,15 @@ Defaults: `min_query_length` 2, `limit` 20.
 
 ### Options endpoint
 
-Route: engine `GET options` as `options`. Controller authenticates with ActiveAdmin `authentication_method` when set, else requires `current_user_method` to return a user, else `401`. Authorization uses `authorize_with` when set, else presence of the current palette user; failure is `403`. Success renders JSON from `Finder.options`.
+Default route: ActiveAdmin page action GET/POST `options` on the Command Palette
+page (RFC 0009), helper `admin_command_palette_options_path`. Escape-hatch engine
+route remains when `auto_register_page` is false.
+
+Authentication uses ActiveAdmin `authentication_method` when set, else requires
+`current_user_method` to return a user, else `401`. Authorization uses
+`authorize_with` when set, else the namespace authorization adapter with
+`Auth::READ` on the Command Palette page config; failure is `403`. Success
+renders JSON from `Finder.options`.
 
 ### Manual vs compiled finders
 
@@ -61,11 +69,20 @@ Route: engine `GET options` as `options`. Controller authenticates with ActiveAd
 
 ## Security considerations
 
-Mount the engine inside the host authentication boundary. `authorize_with` is the host policy hook for the JSON endpoint. Finder blocks MUST apply host authorization before returning rows. Labels and URLs in JSON are visible to the signed-in admin session that can call options.
+Auth is the ActiveAdmin controller contract (RFC 0009). Optional host session
+route constraints are defense in depth. `authorize_with` overrides the adapter
+check only. Finder blocks MUST apply host authorization before returning rows.
+Labels and URLs in JSON are visible to the signed-in admin session that can call
+options.
 
 ## Registrar
 
-`Configuration#register_finder`, `Configuration#register_prefix`, `Configuration#authorize_with`, `Configuration#default_finder`, `Configuration#min_query_length`, `Configuration#limit`. Finder API: `Finder.options`, `Finder.kinds`. Route helper: `active_admin_command_palette.options_path`.
+`Configuration#register_finder`, `Configuration#register_prefix`,
+`Configuration#authorize_with`, `Configuration#auto_register_page`,
+`Configuration#default_finder`, `Configuration#min_query_length`,
+`Configuration#limit`. Finder API: `Finder.options`, `Finder.kinds`. Route
+helper: `admin_command_palette_options_path` (default);
+`active_admin_command_palette.options_path` (escape hatch).
 
 ## Drawbacks
 

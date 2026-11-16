@@ -15,15 +15,15 @@ Give ActiveAdmin 4 operators a Cmd+K / Ctrl+K command palette for menu navigatio
 
 ActiveAdmin menus and resource pages grow faster than operators can click through. A keyboard palette that only searches hard-coded model names in the gem would invent a domain the host already owns. Stacking a generic command palette gem that introspects every ActiveRecord class would expose labels, scopes, and destroy paths the admin never registered.
 
-This gem ships the shell, the menu walk, the action allow-list, and a finder protocol. Hosts mount the engine inside their authenticated admin area, register finders or a resource DSL plus `default_finder`, and keep authorization on their side. Changing mount path, Stimulus controller identity, action fields, finder result keys, or the resource DSL without a numbered RFC breaks host layouts and initializers.
+This gem ships the shell, the menu walk, the action allow-list, and a finder protocol. Hosts keep `ActiveAdmin.routes`, register finders or a resource DSL plus `default_finder`, and keep row-level authorization in finders. Options auth follows ActiveAdmin (RFC 0009). Changing options ownership, Stimulus controller identity, action fields, finder result keys, or the resource DSL without a numbered RFC breaks host layouts and initializers.
 
 ## Guide-level explanation
 
-Add the gem, mount `ActiveAdmin::CommandPalette::Engine` under the authenticated admin path, wire layout body data attributes and the palette partial, and register finders or `command_palette` blocks. Operators open the palette with Cmd+K or Ctrl+K, filter navigate items, run `>` actions, and search records through host finders. Built-in UI locales cover English, Finnish, and Swedish.
+Add the gem, keep `ActiveAdmin.routes(self)`, wire layout body data attributes and the palette partial, and register finders or `command_palette` blocks. Operators open the palette with Cmd+K or Ctrl+K, filter navigate items, run `>` actions, and search records through host finders. Built-in UI locales cover English, Finnish, and Swedish.
 
 ## Drawbacks
 
-Hosts must mount, wire layout, and register finders or a `default_finder`. The gem cannot invent destroy or edit URLs for resources that never opted in. Operators who wanted automatic discovery of every model pay setup work instead.
+Hosts must wire layout and register finders or a `default_finder`. The gem cannot invent destroy or edit URLs for resources that never opted in. Operators who wanted automatic discovery of every model pay setup work instead.
 
 ## Rationale and alternatives
 
@@ -31,7 +31,7 @@ Hard-coding models inside the gem would look smaller and would break every host 
 
 ## Prior art
 
-VS Code and Raycast command palettes; browser omnibox prefix modes; ActiveAdmin menus and resource DSL. Sibling ActiveAdmin gems keep host wiring explicit rather than inventing domain tables.
+Editor and launcher command palettes; browser omnibox prefix modes; ActiveAdmin menus and resource DSL. Other ActiveAdmin extensions keep host wiring explicit rather than inventing domain tables.
 
 ## Unresolved questions
 

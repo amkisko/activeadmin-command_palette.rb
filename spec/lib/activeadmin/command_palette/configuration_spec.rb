@@ -9,6 +9,10 @@ RSpec.describe ActiveAdmin::CommandPalette::Configuration do
     expect(config.search_kind_limit).to eq(20)
   end
 
+  it "auto-registers the ActiveAdmin options page by default" do
+    expect(config.auto_register_page).to be(true)
+  end
+
   describe "#actions=" do
     it "accepts GET actions without confirm and applies defaults", :aggregate_failures do
       config.actions = [{id: "jobs", label: "Jobs", url: "/admin/jobs"}]

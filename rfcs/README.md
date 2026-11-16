@@ -45,6 +45,6 @@ Procedural: RFC 0001 (Proposed).
 
 Informational: RFC 0002 problem and positioning (Stable).
 
-Standards Track, Stable: RFC 0003 palette shell, RFC 0004 navigate and actions, RFC 0005 finder protocol, RFC 0006 resource DSL, RFC 0007 finder result detail and client matching, RFC 0008 bounded finder POST.
+Standards Track, Stable: RFC 0003 palette shell, RFC 0004 navigate and actions, RFC 0005 finder protocol, RFC 0006 resource DSL, RFC 0007 finder result detail and client matching, RFC 0008 bounded finder POST, RFC 0009 ActiveAdmin-owned options route.
 
 A public API, file, or protocol change needs a new Standards Track RFC.

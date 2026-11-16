@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     @current_user = User.order(:id).first || User.create!(email: "dummy@example.com", name: "Dummy User")
   end
 
+  def authenticate_admin_user!
+    head :unauthorized unless current_user
+  end
+
   def chat
     head :ok
   end

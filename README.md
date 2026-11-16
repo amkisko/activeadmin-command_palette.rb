@@ -21,13 +21,21 @@ Add the gem to your Gemfile:
 gem "activeadmin-command_palette"
 ```
 
-Mount the engine inside your authenticated admin area:
+Keep `ActiveAdmin.routes(self)`. The gem registers a hidden Command Palette page so
+options live at `/admin/command_palette/options` with ActiveAdmin authentication and
+authorization (`Auth::READ` on that page). No palette line is required in `routes.rb`
+(RFC 0009).
+
+For a custom path, set `config.auto_register_page = false` and draw explicitly:
 
 ```ruby
-authenticate :user do
-  mount ActiveAdmin::CommandPalette::Engine => "/admin/command_palette", as: "active_admin_command_palette"
-end
+ActiveAdmin::CommandPalette::Routes.draw(self)
+# or: mount ActiveAdmin::CommandPalette::Engine => "/admin/command_palette", as: "active_admin_command_palette"
 ```
+
+Escape-hatch mounts still authenticate through ActiveAdmin `authentication_method` and
+authorize with `authorize_with` or `Auth::READ` on the Command Palette page config.
+Mapper placement does not inherit ActiveAdmin config by itself.
 
 Wire the layout body controller and data attributes, render the palette partial, and add a header button that calls `show`.
 
@@ -70,7 +78,11 @@ ActiveAdmin.register User do
 end
 ```
 
-Host initializer keeps auth, prefixes, global shortcuts, and a `default_finder` that receives each resource registration:
+Host initializer keeps prefixes, global shortcuts, optional `authorize_with`, and a
+`default_finder` that receives each resource registration. Authentication follows
+ActiveAdmin `authentication_method`. Authorization defaults to the ActiveAdmin
+adapter (`Auth::READ` on the Command Palette page); set `authorize_with` only to
+override that check:
 
 ```ruby
 ActiveAdmin::CommandPalette.configure do |config|
@@ -80,9 +92,8 @@ ActiveAdmin::CommandPalette.configure do |config|
     # return Array of { id:, kind:, label:, url:, detail?, keywords? }
   }
   config.actions = [
-    {id: "open-jobs", label: "Open jobs", url: "/admin/good_job"}
+    {id: "open-jobs", label: "Open jobs", url: "/admin/jobs"}
   ]
-  config.authorize_with = ->(controller) { controller.current_user.present? }
 end
 ```
 
@@ -98,8 +109,8 @@ Apply host authorization before returning rows. Prefer this match order when bui
 
 Host checklist before production:
 
-1. Mount the engine inside the authenticated admin boundary.
-2. Set `authorize_with` so unsigned or unauthorized callers cannot hit the JSON options endpoint.
+1. Rely on `ActiveAdmin.routes` (default) or an explicit `Routes.draw` / mount with ActiveAdmin auth on the controller.
+2. Confirm ActiveAdmin `authentication_method` and the authorization adapter allow `Auth::READ` on the Command Palette page (or set `authorize_with`).
 3. Scope every finder with the same record policy as the ActiveAdmin resource (`accessible_by`, `policy_scope`, or equivalent). Do not copy a bare `.all` finder into a multi-role or multi-tenant app.
 4. Prefer the CSRF-protected `POST` client path. Treat `GET .../options` as a legacy integration surface: `q` can appear in access logs, proxies, and history.
 5. Rate-limit `/admin/command_palette/options` at the host (the gem caps rows per request, not request volume).
@@ -131,7 +142,7 @@ make lint
 make test
 ```
 
-`make lint` runs Biome (`npx @biomejs/biome@2.3.8`, same version as Trunk) on JavaScript under `app/assets`, plus RuboCop and RBS. `make test` also runs the JavaScript behavior suite. See `spec/README.md` for focused runs and coverage notes.
+`make lint` runs Biome (`npx @biomejs/biome@2.3.8`) on JavaScript under `app/assets`, plus RuboCop and RBS. `make test` also runs the JavaScript behavior suite and browser system specs (install Chromium from `.playwright-version` first; see `spec/README.md`).
 
 Release:
 
@@ -141,7 +152,7 @@ make release
 
 ## Design RFCs
 
-Numbered design documents for the public contract live in [`rfcs/`](rfcs/README.md). Shipped features are specified in RFC 0003 through RFC 0008. Process rules are RFC 0001.
+Numbered design documents for the public contract live in [`rfcs/`](rfcs/README.md). Shipped features are specified in RFC 0003 through RFC 0009. Process rules are RFC 0001.
 
 ## Links
 

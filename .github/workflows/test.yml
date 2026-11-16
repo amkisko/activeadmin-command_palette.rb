@@ -58,6 +58,16 @@ jobs:
           ruby-version: ${{ matrix.ruby_version }}
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5380afe3279374c1a78691b7cd4b736dc # v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright Chromium
+        run: |
+          PLAYWRIGHT_VERSION=$(tr -d '[:space:]' < .playwright-version)
+          npx -y "playwright@${PLAYWRIGHT_VERSION}" install --with-deps chromium
+
       - name: Run tests
         run: bundle exec polyrun parallel-rspec --workers 5 --merge-failures
 
@@ -74,6 +84,14 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5380afe3279374c1a78691b7cd4b736dc # v4
+        with:
+          node-version: "22"
+      - name: Install Playwright Chromium
+        run: |
+          PLAYWRIGHT_VERSION=$(tr -d '[:space:]' < .playwright-version)
+          npx -y "playwright@${PLAYWRIGHT_VERSION}" install --with-deps chromium
       - run: POLYRUN_COVERAGE=1 bundle exec polyrun parallel-rspec --workers 5 --merge-failures
       - name: Report coverage for Sonar/Codecov
         run: >

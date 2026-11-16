@@ -1,0 +1,17 @@
+<div class="border-b px-4 py-2 flex items-center sticky top-0 z-20 h-16 w-full bg-white">
+  <div class="grow flex items-center gap-2 min-w-0">
+    <h1 data-test-site-title class="text-lg font-semibold truncate">
+      <%= title %>
+    </h1>
+  </div>
+
+  <button
+    type="button"
+    data-test-command-palette-open
+    class="inline-flex items-center gap-2 me-3 rounded border px-2.5 py-1 text-xs"
+    data-action="click-><%= command_palette_controller_name %>#show"
+    aria-label="<%= t("active_admin.command_palette.open") %>">
+    <span><%= t("active_admin.command_palette.open_short") %></span>
+    <kbd data-<%= command_palette_controller_name %>-target="shortcut">Ctrl+K</kbd>
+  </button>
+</div>

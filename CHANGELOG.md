@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.2.0 (2026-11-16)
+
+- BREAKING: Draw finder options through a hidden ActiveAdmin Command Palette page by default so `ActiveAdmin.routes` owns the path and `PageController` owns auth (RFC 0009). Hosts that still mount the engine must set `configuration.auto_register_page = false`.
+- Add `configuration.auto_register_page` (default true) and `ActiveAdmin::CommandPalette::Routes.draw` for an explicit engine mount escape hatch.
+- Prefer `admin_command_palette_options_path` in the Helper; keep the engine options helper as fallback.
+- Authorize with ActiveAdmin `Auth::READ` on the page config unless `authorize_with` overrides.
+- Fail closed when the ActiveAdmin namespace or Command Palette page config is missing during authorization.
+- Keep explicit CSRF protection on the page-owned options controller; cover adapter denial, index redirect, and escape-hatch fail-closed paths.
+- Mark RFC 0009 Stable after shipping ActiveAdmin-owned options routes and auth.
+
 ## 0.1.9 (2026-11-03)
 
 - Keep navigation working when browser storage is unavailable.

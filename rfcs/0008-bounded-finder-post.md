@@ -19,7 +19,7 @@ RFC 0005 puts `q` in a GET query string and the RFC 0003 client sends one reques
 
 ## Guide-level explanation
 
-Hosts keep the same engine mount and finder blocks. The browser sends one JSON request for either a selected kind or the registered kind list:
+Hosts keep the same options path (ActiveAdmin page by default, RFC 0009) and finder blocks. The browser sends one JSON request for either a selected kind or the registered kind list:
 
 ```text
 POST /admin/command_palette/options

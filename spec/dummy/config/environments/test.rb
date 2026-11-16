@@ -6,8 +6,11 @@ Rails.application.configure do
   config.consider_all_requests_local = true
   config.cache_store = :null_store
   config.action_dispatch.show_exceptions = :rescuable
+  # Request specs keep forgery off; system specs enable it per example when needed.
   config.action_controller.allow_forgery_protection = false
   config.action_controller.raise_on_missing_callback_actions = true
   config.active_support.deprecation = :stderr
   config.active_record.maintain_test_schema = false
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {"Cache-Control" => "public, max-age=3600"}
 end

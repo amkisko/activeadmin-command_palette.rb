@@ -10,6 +10,18 @@ module ActiveAdmin
         ActiveAdmin::CommandPalette::Integration.install!
       end
 
+      # ActiveAdmin load_paths own app/admin; Zeitwerk must not autoload that tree.
+      initializer "activeadmin_command_palette.configure_zeitwerk" do
+        Rails.autoloaders.main.ignore(root.join("app/admin"))
+      end
+
+      initializer "activeadmin_command_palette.load_active_admin" do
+        path = root.join("app/admin").to_s
+        ActiveAdmin.before_load do |app|
+          app.load_paths << path unless app.load_paths.include?(path)
+        end
+      end
+
       # Compile after ActiveAdmin loads admin files. A plain to_prepare can run after
       # ActiveAdmin.unload! and before load!, which would leave an empty catalog.
       initializer "activeadmin_command_palette.reload", after: :load_config_initializers do

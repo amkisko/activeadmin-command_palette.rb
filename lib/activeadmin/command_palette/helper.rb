@@ -18,7 +18,15 @@ module ActiveAdmin
       end
 
       def command_palette_options_url
-        active_admin_command_palette.options_path
+        if respond_to?(:admin_command_palette_options_path)
+          return admin_command_palette_options_path
+        end
+
+        if respond_to?(:active_admin_command_palette)
+          return active_admin_command_palette.options_path
+        end
+
+        "/admin/command_palette/options"
       end
 
       def command_palette_context
